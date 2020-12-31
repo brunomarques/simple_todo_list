@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/show-nestable', function(Request $request) {
+    dd($request->list);
+})->name('mynestable');
+
+Route::resources([
+    "atividades" => App\Http\Controllers\AtividadeController::class,
+    "item_de_atividades" => App\Http\Controllers\ItemAtividadeController::class,
+    "item_de_item" => App\Http\Controllers\ItemItemController::class
+]);

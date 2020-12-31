@@ -6,63 +6,48 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
         <title>Laravel - {{ env("app_name") }}</title>
-        <!-- Favicon icon -->
+
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("images/favicon.png") }}">
 
+        <link rel="stylesheet" href="{{ asset("plugins/fontawesome-free/css/all.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/adminlte.min.css") }}">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     </head>
 
-    <body>
-        <div id="preloader">
-            <div class="loader"></div>
-        </div>
-
-        <div class="main-wrapper">
-            <div class="nav-header">
-                <div class="brand-logo">
-                    <a href="/">
-                        <b class="logo-abbr"><i class="fas fa-clipboard-list"></i></b>
+    <body class="hold-transition layout-boxed">
+        <div class="wrapper">
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px !important;">
+                <ul class="navbar-nav">
+                    <li>
                         <span class="brand-title">
                             <b>{{ env("app_name") }}</b>
                         </span>
-                    </a>
-                </div>
-            </div>
+                    </li>
+                </ul>
 
-            <div class="header">
-                <div class="header-content clearfix">
-                    <div class="header-left"></div>
-
-                    <div class="header-right">
-                        <ul class="">
-                            <li class="icons d-none d-md-flex">
-                                <a href="javascript:void(0)" class="window_fullscreen-x">
-                                    <i class="icon-frame"></i>
-                                </a>
+                <ul class="navbar-nav ml-auto">
+                    @if (Route::has('login'))
+                        @auth
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="{{ url('/home') }}" class="nav-link">Início</a>
                             </li>
-                            @if (Route::has('login'))
-                                @auth
-                                    <li class="icons d-none d-md-flex" style="width: 120px">
-                                        <a href="{{ url('/home') }}" class="text-sm">Início</a>
-                                    </li>
-                                @else
-                                    <li class="icons d-none d-md-flex" style="width: 70px;">
-                                        <a href="{{ route('login') }}" class="text-sm">Login</a>
-                                    </li>
+                        @else
+                            <li class="nav-item d-none d-sm-inline-block">
+                                <a href="{{ route('login') }}" class="nav-link">Login</a>
+                            </li>
 
-                                    @if (Route::has('register'))
-                                        <li class="icons d-none d-md-flex text-center" style="width: 70px;">
-                                            <a href="{{ route('register') }}" class="text-sm">Registrar</a>
-                                        </li>
-                                    @endif
-                                @endauth
+                            @if (Route::has('register'))
+                                <li class="nav-item d-none d-sm-inline-block text-center">
+                                    <a href="{{ route('register') }}" class="nav-link">Registrar</a>
+                                </li>
                             @endif
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                        @endauth
+                    @endif
+                </ul>
+            </nav>
 
-            <div class="content-body" style="margin-left: 0px !important;">
+    	    <div class="content" style="margin-left: 0px !important;">
                 <div class="container-fluid">
                     <div class="row justify-content-between mb-5 mt-5">
                         <div class="col-12 ">
@@ -75,43 +60,37 @@
 
                     <div class="row mb-1">
                         <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <h4 class="card-title">Criar tarefa</h4>
-                                        </div>
-                                        <div class="col-xl-6 text-right">
-                                            <i class="fas fa-plus text-success" style="font-size: 1rem"></i>
-                                        </div>
+                            <div class="card card-success card-outline">
+                                <div class="card-header" style="border-bottom: none !important;">
+                                    <h2 class="card-title" style="font-size: 2rem">Criar tarefa</h2>
+
+                                    <div class="card-tools">
+                                        <i class="fas fa-plus text-success" style="font-size: 2rem"></i>
                                     </div>
+                                </div>
+
+                                <div class="card-body">
                                     <p class="card-text">
                                         Para inserir uma tarefa é bem simples. Basta clicar no botão <span class="text-success" style="font-size: 1rem"><i class="fas fa-plus"></i> Nova atividade</span> e seguir as instruções da tela.
                                     </p>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="{{ route('register') }}" class="card-link float-right">Cadastre-se agora</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <h4 class="card-title">Alterar tarefa</h4>
-                                        </div>
-                                        <div class="col-xl-6 text-right">
-                                            <i class="fas fa-pencil-alt text-warning" style="font-size: 1rem"></i>
-                                        </div>
+                            <div class="card card-warning card-outline">
+                                <div class="card-header" style="border-bottom: none !important;">
+                                    <h2 class="card-title" style="font-size: 2rem">Alterar tarefa</h2>
+
+                                    <div class="card-tools">
+                                        <i class="fas fa-pencil-alt text-warning" style="font-size: 2rem"></i>
                                     </div>
+                                </div>
+
+                                <div class="card-body">
                                     <p class="card-text">
                                         Uma vez criada a atividade, ela será exibida em sua lista de atividades. Passando o mouse sobre qualquer linha fará com que o ícone de edição <i class="fas fa-pencil-alt text-warning" style="font-size: 1rem"></i> apareça, permitindo que você clique e altere facilmente.
                                     </p>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="{{ route('register') }}" class="card-link float-right">Cadastre-se agora</a>
                                 </div>
                             </div>
                         </div>
@@ -119,44 +98,45 @@
 
                     <div class="row mb-5">
                         <div class="col-xl-6">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <h4 class="card-title">Excluir tarefa</h4>
-                                        </div>
-                                        <div class="col-xl-6 text-right">
-                                            <i class="fas fa-trash text-danger" style="font-size: 1rem"></i>
-                                        </div>
+                            <div class="card card-danger card-outline">
+                                <div class="card-header" style="border-bottom: none !important;">
+                                    <h2 class="card-title" style="font-size: 2rem">Excluir tarefa</h2>
+
+                                    <div class="card-tools">
+                                        <i class="fas fa-trash text-danger" style="font-size: 2rem"></i>
                                     </div>
+                                </div>
+
+                                <div class="card-body">
                                     <p class="card-text">
                                         Assim como o Alterar Tarefa, passando o mouse sobre qualquer linha fará com que o ícone de exclusão <i class="fas fa-trash text-danger" style="font-size: 1rem"></i> apareça, permitindo que você remova uma atividade de sua lista facilmente.
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <a href="{{ route('register') }}" class="card-link float-right">Cadastre-se agora</a>
-                                </div>
                             </div>
                         </div>
+
                         <div class="col-xl-6">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <h4 class="card-title">Resgatar tarefa</h4>
-                                        </div>
-                                        <div class="col-xl-6 text-right">
-                                            <i class="fas fa-trash-restore text-info" style="font-size: 1rem"></i>
-                                        </div>
+                            <div class="card card-info card-outline">
+                                <div class="card-header" style="border-bottom: none !important;">
+                                    <h2 class="card-title" style="font-size: 2rem">Resgatar tarefa</h2>
+
+                                    <div class="card-tools">
+                                        <i class="fas fa-trash-restore text-info" style="font-size: 2rem"></i>
                                     </div>
+                                </div>
+
+                                <div class="card-body">
                                     <p class="card-text">
                                         Se por acaso seja necessário resgatar uma atividade removida da lista, basta ativá-la novamente. Clique no botão <span class="text-info" style="font-size: 1rem"><i class="fas fa-trash-restore"></i> Re-ativar tarefa</span>, pesquisar por um nome próximo e ativá-la.
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <a href="{{ route('register') }}" class="card-link float-right">Cadastre-se agora</a>
-                                </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between mb-5 mt-0">
+                        <div class="col-12">
+                            <a href="{{ route('register') }}" class="btn btn-lg btn-outline-success btn-block">Cadastre-se agora</a>
                         </div>
                     </div>
 
@@ -171,16 +151,12 @@
                 </div>
             </div>
 
-            <div class="footer" style="padding-left: 0px !important;">
-                <div class="copyright">
-                    <p>{{ env("app_name") }} (v1.0.0)</p>
+            <footer class="main-footer" style="margin-left: 0px !important;">
+                <div class="float-right d-none d-sm-block">
+                    <b>V</b> 1.0.5
                 </div>
-            </div>
+                <strong>{{ env("app_name") }}</strong> All rights reserved.
+            </footer>
         </div>
-
-        <script src="{{ asset("plugins/common/common.min.js") }}"></script>
-        <script src="{{ asset("js/custom.min.js") }}"></script>
-        <script src="{{ asset("js/settings.js") }}"></script>
-        <script src="{{ asset("js/quixnav.js") }}"></script>
     </body>
 </html>
