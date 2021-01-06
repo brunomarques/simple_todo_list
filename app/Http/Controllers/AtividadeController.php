@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atividade;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AtividadeController extends Controller
 {
@@ -35,7 +37,23 @@ class AtividadeController extends Controller
      */
     public function store(Request $request)
     {
-        echo "aqui";
+        $maxOrdem = 0;
+        if(!is_null(Atividade::max('ordem'))) {
+            $maxOrdem = Atividade::max('ordem');
+        }
+
+        $atividade = new Atividade();
+        $atividade -> nome    = $request -> tarefa;
+        $atividade -> user_id = Auth::user()->id;
+        $atividade -> ordem   = $maxOrdem++;
+
+        if($atividade -> save()) {
+            return response() -> json([
+                'message' => "Atividade criada com sucesso!",
+                'type'    => 'success',
+                'atividade' => $atividade
+            ], 200);
+        }
     }
 
     /**
@@ -69,7 +87,20 @@ class AtividadeController extends Controller
      */
     public function update(Request $request, Atividade $atividade)
     {
-        //
+        $atividade -> nome = $request->tarefa;
+        if($atividade -> save()) {
+            return response() -> json([
+                'message'   => "Atividade alterada com sucesso!",
+                'type'      => 'success',
+                'atividade' => $atividade
+            ], 200);
+        }
+        else {
+            return response() -> json([
+                'message' => "Erro ao alterar atividade!",
+                'type'    => 'error'
+            ], 200);
+        }
     }
 
     /**
@@ -80,6 +111,20 @@ class AtividadeController extends Controller
      */
     public function destroy(Atividade $atividade)
     {
-        //
+        $id = $atividade -> id;
+
+        if($atividade -> delete()) {
+            return response() -> json([
+                'message'      => "Atividade removida com sucesso!",
+                'type'         => 'success',
+                'atividade_id' => $id
+            ], 200);
+        }
+        else {
+            return response() -> json([
+                'message' => "Erro ao remover atividade!",
+                'type'    => 'error'
+            ], 200);
+        }
     }
 }

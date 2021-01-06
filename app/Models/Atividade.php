@@ -25,6 +25,6 @@ class Atividade extends Model
 
     public function itens_atividade()
     {
-        return $this -> hasMany(ItemAtividade::class);
+        return $this -> hasMany(ItemAtividade::class) -> orderBy('ordem');
     }
 }

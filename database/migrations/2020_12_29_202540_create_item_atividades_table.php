@@ -17,6 +17,10 @@ class CreateItemAtividadesTable extends Migration
             $table->id();
             $table->integer('atividade_id')->unsigned()->index();
             $table->string("nome", 120);
+            $table->integer('pai_id')->unsigned()->default(0);
+            $table->integer('filho_id')->unsigned()->idefault(0);
+            $table->integer('ordem')->unsigned()->default(0);
+            $table->dateTime('concluded_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

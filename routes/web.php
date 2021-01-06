@@ -26,6 +26,9 @@ Route::post('/show-nestable', function(Request $request) {
     dd($request->list);
 })->name('mynestable');
 
+Route::post('/item_de_atividades/concluded', [App\Http\Controllers\ItemAtividadeController::class, 'conclude'])->name('item_de_atividades.concluded');
+Route::post('/lista_de_itens', [App\Http\Controllers\HomeController::class, 'listaAtividade'])->name('lista_de_itens.listaAtividade');
+
 Route::resources([
     "atividades" => App\Http\Controllers\AtividadeController::class,
     "item_de_atividades" => App\Http\Controllers\ItemAtividadeController::class,

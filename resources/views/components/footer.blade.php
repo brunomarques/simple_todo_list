@@ -1,10 +1,11 @@
 
+                    </div>
                 </div>
             </div>
 
             <footer class="main-footer" style="margin-left: 0px !important;">
                 <div class="float-right d-none d-sm-block">
-                    <b>V</b> 1.0.5
+                    <b>V</b> 1.7.5
                 </div>
                 <strong>{{ env("app_name") }}</strong> All rights reserved.
             </footer>
@@ -24,6 +25,9 @@
     <script src="{{ asset("plugins/sweetalert2/sweetalert2.all.min.js") }}"></script>
 
     <script src="{{ asset("js/adminlte.min.js") }}"></script>
+    <script src="{{ asset("js/uikit.min.js") }}"></script>
+    <script src="{{ asset("js/uikit-icons.min.js") }}"></script>
+    <script src="{{ asset("plugins/jquery-sortable-lists/jquery-sortable-lists.min.js") }}"></script>
 
     @yield('js')
 </html>

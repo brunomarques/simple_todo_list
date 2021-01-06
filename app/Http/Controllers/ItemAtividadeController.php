@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemAtividade;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ItemAtividadeController extends Controller
@@ -35,16 +36,32 @@ class ItemAtividadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $maxOrdem = ItemAtividade::where('atividade_id', $request -> atividade_id)->max('ordem');
+        $maxOrdem = is_null($maxOrdem) ? 0 : $maxOrdem;
+
+        $item = new ItemAtividade();
+        $item -> nome         = $request -> item;
+        $item -> atividade_id = $request -> atividade_id;
+        $item -> ordem        = $maxOrdem + 1;
+        $item -> pai_id       = 0;
+        $item -> filho_id     = 0;
+
+        if($item -> save()) {
+            return response() -> json([
+                'message' => "Ítem criado com sucesso!",
+                'type'    => 'success',
+                'item'    => $item
+            ], 200);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ItemAtividade  $itemAtividade
+     * @param  \App\Models\ItemAtividade  $item_de_atividade
      * @return \Illuminate\Http\Response
      */
-    public function show(ItemAtividade $itemAtividade)
+    public function show(ItemAtividade $item_de_atividade)
     {
         //
     }
@@ -52,10 +69,10 @@ class ItemAtividadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ItemAtividade  $itemAtividade
+     * @param  \App\Models\ItemAtividade  $item_de_atividade
      * @return \Illuminate\Http\Response
      */
-    public function edit(ItemAtividade $itemAtividade)
+    public function edit(ItemAtividade $item_de_atividade)
     {
         //
     }
@@ -64,22 +81,71 @@ class ItemAtividadeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ItemAtividade  $itemAtividade
+     * @param  \App\Models\ItemAtividade  $item_de_atividade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ItemAtividade $itemAtividade)
+    public function update(Request $request, ItemAtividade $item_de_atividade)
     {
-        //
+        $item_de_atividade -> nome = $request->item_de_atividade;
+        if($item_de_atividade -> save()) {
+            return response() -> json([
+                'message' => "Item alterado com sucesso!",
+                'type'    => 'success',
+                'item'    => $item_de_atividade
+            ], 200);
+        }
+        else {
+            return response() -> json([
+                'message' => "Erro ao alterar o item!",
+                'type'    => 'error'
+            ], 200);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ItemAtividade  $itemAtividade
+     * @param  \App\Models\ItemAtividade  $item_de_atividade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemAtividade $itemAtividade)
+    public function destroy(ItemAtividade $item_de_atividade)
     {
-        //
+        $id = $item_de_atividade -> id;
+
+        if($item_de_atividade -> delete()) {
+            return response() -> json([
+                'message' => "Item removido com sucesso!",
+                'type'    => 'success',
+                'item_id' => $id
+            ], 200);
+        }
+        else {
+            return response() -> json([
+                'message' => "Erro ao remover o item!",
+                'type'    => 'error'
+            ], 200);
+        }
+    }
+
+    public function conclude(Request $request)
+    {
+        $item_de_atividade = ItemAtividade::find($request -> item_de_atividade);
+        $item_de_atividade -> concluded_at = is_null($item_de_atividade -> concluded_at) ? Carbon::now() : NULL;
+
+        //$item_de_atividade -> concluded_at = Carbon::now();
+
+        if($item_de_atividade -> save()) {
+            return response() -> json([
+                'message' => "Item conclído com sucesso!",
+                'type'    => 'success',
+                'item'    => $item_de_atividade
+            ], 200);
+        }
+        else {
+            return response() -> json([
+                'message' => "Erro ao concluir o item!",
+                'type'    => 'error'
+            ], 200);
+        }
     }
 }

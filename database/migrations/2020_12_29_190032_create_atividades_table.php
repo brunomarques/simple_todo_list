@@ -17,6 +17,7 @@ class CreateAtividadesTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned()->index();
             $table->string("nome", 120);
+            $table->integer('ordem')->unsigned()->default(0);
 
             $table->timestamps();
             $table->softDeletes();

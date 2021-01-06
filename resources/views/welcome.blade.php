@@ -17,10 +17,10 @@
 
     <body class="hold-transition layout-boxed">
         <div class="wrapper">
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px !important;">
+            <nav class="main-header navbar navbar-expand navbar-light" style="margin-left: 0px !important;">
                 <ul class="navbar-nav">
                     <li>
-                        <span class="brand-title">
+                        <span class="nav-link">
                             <b>{{ env("app_name") }}</b>
                         </span>
                     </li>

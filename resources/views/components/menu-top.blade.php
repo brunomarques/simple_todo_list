@@ -1,75 +1,52 @@
-<nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark" style="margin-left: 0px !important;">
-    <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-            <span class="nav-link">
-                <b>{{ env("app_name") }}</b>
-            </span>
-        </li>
-    </ul>
+<div uk-sticky="media: 960" class="uk-navbar-container tm-navbar-container uk-sticky uk-active uk-sticky-below uk-sticky-fixed shadow-sm">
+    <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar" uk-navbar>
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="#">{{ env("app_name") }}</a>
+            </div>
 
-    <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">{{ Auth::user()->name }}</a>
-
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                    <a href="javascript:void()" class="dropdown-item">
-                        <div class="media">
-                            <i class="far fa-user"></i>
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title"> My Profile</h3>
-                            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a href="#">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="uk-navbar-dropdown uk-animation-toggle" uk-dropdown="pos: bottom-justify; offset: -10; animation: uk-animation-slide-top-small">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-user mr-3"></i> Meu perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-calendar-alt mr-3"></i> Calendário
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-envelope-open-text mr-3"></i> Mensagens
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-paper-plane mr-3"></i> Atividades
+                                    </a>
+                                </li>
+                                <li class="uk-nav-divider"></li>
+                                <li>
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-door-open mr-3"></i> Sair
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void()" class="dropdown-item">
-                        <div class="media">
-                            <i class="far fa-calendar-alt"></i>
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title"> My Calender</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void()" class="dropdown-item">
-                        <div class="media">
-                            <i class="fas fa-envelope-open-text"></i>
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    My Inbox
-                                    <span class="float-right text-sm">
-                                        <div class="badge gradient-3 badge-pill badge-primary">3</div>
-                                    </span>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void()" class="dropdown-item">
-                        <div class="media">
-                            <i class="fa fa-paper-plane"></i>
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    My Tasks
-                                    <span class="float-right text-sm">
-                                        <div class="badge badge-pill bg-dark">3</div>
-                                    </span>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void()" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <div class="media">
-                            <i class="fas fa-door-open"></i>
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">Sair</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-    </ul>
-</nav>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
