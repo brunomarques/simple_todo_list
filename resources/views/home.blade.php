@@ -105,7 +105,7 @@
             hintWrapperClass: 'hintWrapperClass', // the new place
             listsClass: 'listsCss',
             placeholderClass: 'placeholderClass', // the older place
-            insertZone: true,
+            insertZone: 50,
             insertZonePlus: true,
             ignoreClass: 'item-actions',
             opener: {
@@ -113,20 +113,17 @@
                 as: 'html',  // or "class"
                 close: '<i class="fa fa-minus uk-text-secondary"></i>',
                 open: '<i class="fa fa-plus uk-text-secondary"></i>',
-                /*openerCss: {
-                    //
-                },*/
                 openerClass: 'openerCss' // css class
             },
             onDragStart: function(e, el)
             {
-                let list_id = el.attr("id").split("-");
-                $("#actions-list-"+list_id[list_id.length - 1]).hide();
+                /*let list_id = el.attr("id").split("-");
+                $("#actions-list-"+list_id[list_id.length - 1]).hide();*/
             },
             complete: function(currEl)
             {
-                let list_id = currEl.attr("id").split("-");
-                $("#actions-list-"+list_id[list_id.length - 1]).show();
+                /*let list_id = currEl.attr("id").split("-");
+                $("#actions-list-"+list_id[list_id.length - 1]).show();*/
             },
             onChange: function(currEl)
             {
