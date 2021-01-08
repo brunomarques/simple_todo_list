@@ -15,15 +15,13 @@ class CreateItemItemsTable extends Migration
     {
         Schema::create('item_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_atividades_id')->unsigned()->index();
-            $table->integer('item_id')->after("item_atividades_id")->default(0);
-            $table->string("nome", 120);
+            $table->foreignId('atividade_id')->constrained('atividades');
+            $table->foreignId('item_pai_id')->constrained('item_atividades');
+            $table->integer('item_filho_id')->unsigned()->default(0);
             $table->integer('ordem')->unsigned()->default(0);
 
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('item_atividades_id')->references('id')->on('item_atividades');
         });
     }
 

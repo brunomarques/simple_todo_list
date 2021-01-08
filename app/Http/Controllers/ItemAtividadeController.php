@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class ItemAtividadeController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -43,8 +53,6 @@ class ItemAtividadeController extends Controller
         $item -> nome         = $request -> item;
         $item -> atividade_id = $request -> atividade_id;
         $item -> ordem        = $maxOrdem + 1;
-        $item -> pai_id       = 0;
-        $item -> filho_id     = 0;
 
         if($item -> save()) {
             return response() -> json([
@@ -131,8 +139,6 @@ class ItemAtividadeController extends Controller
     {
         $item_de_atividade = ItemAtividade::find($request -> item_de_atividade);
         $item_de_atividade -> concluded_at = is_null($item_de_atividade -> concluded_at) ? Carbon::now() : NULL;
-
-        //$item_de_atividade -> concluded_at = Carbon::now();
 
         if($item_de_atividade -> save()) {
             return response() -> json([

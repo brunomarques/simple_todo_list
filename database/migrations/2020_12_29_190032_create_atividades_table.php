@@ -15,14 +15,12 @@ class CreateAtividadesTable extends Migration
     {
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned()->index();
+            $table->foreignId('user_id')->constrained('users');
             $table->string("nome", 120);
             $table->integer('ordem')->unsigned()->default(0);
 
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

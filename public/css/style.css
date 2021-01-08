@@ -279,8 +279,8 @@
 }
 
 .hintClass {
-    background-color:#eeeeee !important;
-    border:1px dashed rgb(241 241 241) !important;
+    background-color:#c7c7c7 !important;
+    border:1px dashed #969696 !important;
 }
 
 .hintWrapperClass {
@@ -290,10 +290,10 @@
 
 ul.listsCss {
     background-color: rgb(241 241 241) !important;
-    /*border:1px dashed #c7c7c7 !important;*/
+    border:1px dashed #c7c7c7 !important;
     list-style: none !important;
-    margin-top: -10px !important;
-    padding-bottom: .3rem !important;
+    margin-top: 1px !important;
+    padding-bottom: .5rem !important;
     padding-top: 1rem !important;
 }
 
@@ -307,23 +307,32 @@ ul.listsCss {
     border: none !important;
 }
 
+.uk-card {
+    position: static !important;
+}
+
 .item-actions {
-    z-index: 1030 !important;
-    position: absolute;
+    z-index: 1 !important;
+    position: sticky !important;
     float: right !important;
     margin-left: 68% !important;
-    margin-top: -2.2rem !important;
-    width: 93px !important;
+    margin-top: -1.6rem !important;
+    width: 97px !important;
+    /* display: block !important; */
 }
 
 .corrige-item-actions {
-    margin-top: -6rem !important;
+    /* margin-top: -6rem !important; */
 }
 
 .corrige-item-actions-subitem {
-    margin-left: 60% !important;
+    /* margin-left: 60% !important; */
 }
 
 .item-actions:hover {
     display: block !important;
+}
+
+ul.list-subitens li {
+    margin-bottom: 10px !important;
 }

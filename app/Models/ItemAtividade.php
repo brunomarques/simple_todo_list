@@ -25,6 +25,6 @@ class ItemAtividade extends Model
 
     public function itensItens()
     {
-        return $this -> hasMany(ItemItem::class, "item_atividades_id", "id") -> orderBy('ordem');
+        return $this -> hasMany(ItemItem::class, "item_pai_id", "id") -> orderBy('ordem');
     }
 }
