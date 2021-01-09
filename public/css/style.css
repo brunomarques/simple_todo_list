@@ -279,13 +279,13 @@
 }
 
 .hintClass {
-    background-color:#c7c7c7 !important;
-    border:1px dashed #969696 !important;
+    background-color:#c7c7c7;
+    border:1px dashed #969696;
 }
 
 .hintWrapperClass {
-    background-color:#c7c7c7 !important;
-    border:1px dashed rgb(241 241 241) !important;
+    background-color:#c7c7c7;
+    border:1px dashed rgb(241 241 241);
 }
 
 ul.listsCss {

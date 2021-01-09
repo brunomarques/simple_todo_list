@@ -32,15 +32,15 @@
                             @if(!in_array($item_atividade["id"], $arrayFilhos))
                                 @php $concluded = $item_atividade["concluded_at"]; @endphp
                                 @if(is_null($item_atividade["concluded_at"]))
-                                    <li id="item-list-{{ $item_atividade["id"] }}" data-atividade-id="{{ $atividade["id"] }}" data-order="{{ $item_atividade["ordem"] }}" @if(count($item_atividade["itens_itens"]) > 0) class="s-l-open" @endif>
+                                    <li id="item-list-{{ $item_atividade["id"] }}" data-atividade-id="{{ $atividade["id"] }}" data-order="{{ $item_atividade["ordem"] }}" data-module="P" @if(count($item_atividade["itens_itens"]) > 0) class="s-l-open" @endif>
                                         <div id="item-card-{{ $item_atividade["id"] }}" class="uk-card uk-card-default uk-card-hover uk-card-body" style="padding: 10px">
                                             <span class="uk-sortable-handle uk-margin-small-right uk-text-center" uk-icon="icon: table" id="item-handle-{{ $item_atividade["id"] }}"></span>
                                             <span id="item-nome-{{ $item_atividade["id"] }}">
                                                 {{ $item_atividade["nome"] }}
                                                 <div id="actions-list-{{ $item_atividade["id"] }}" class="item-actions float-right {{ $classEspecial }}" style="display:none">
-                                                    <button class="btn btn-sm btn-outline-success text-sm mr-0 shadow-sm conclude-item" uk-tooltip="Concluir item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-check"></i></button>
-                                                    <button class="btn btn-sm btn-outline-warning text-sm mr-0 shadow-sm edit-item" uk-tooltip="Alterar item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-pencil-alt"></i></button>
-                                                    <button class="btn btn-sm btn-outline-danger text-sm mr-0 shadow-sm remove-item" uk-tooltip="Remover item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-outline-success text-sm mr-0 shadow-sm conclude-item" uk-tooltip="Concluir item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-check"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-outline-warning text-sm mr-0 shadow-sm edit-item" uk-tooltip="Alterar item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-pencil-alt"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger text-sm mr-0 shadow-sm remove-item" uk-tooltip="Remover item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-trash"></i></button>
                                                     {{-- <span class=" text-sm mr-2 new-subitem text-primary" uk-tooltip="Adicionar sub-item" data-item="{{ $item_atividade["id"] }}" data-atividade="{{ $atividade["id"] }}"><i class="fas fa-plus"></i></span> --}}
                                                 </div>
                                             </span>
@@ -51,22 +51,22 @@
                                                 @foreach($item_atividade["itens_itens"] as $item_item_atividade)
                                                     @php array_push($arrayFilhos, $item_item_atividade["item_filho_id"]); @endphp
                                                     @if($concluded == "")
-                                                        <li id="sub-item-list-{{ $item_item_atividade["item_filho_id"] }}" data-atividade-id="{{ $atividade["id"] }}" data-order="{{ $item_item_atividade["ordem"] }}">
+                                                        <li id="sub-item-list-{{ $item_item_atividade["item_filho_id"] }}" data-atividade-id="{{ $atividade["id"] }}" data-order="{{ $item_item_atividade["ordem"] }}" data-module="P">
                                                             <div class="uk-card uk-card-default uk-card-hover uk-card-body" style="padding: 10px">
                                                                 <span class="uk-sortable-handle uk-margin-small-right uk-text-center" uk-icon="icon: table"></span>
                                                                 <span id="item-nome-{{ $item_item_atividade["item_filho_id"] }}">
                                                                     {{ $item_item_atividade["nome"] }}
                                                                     <div id="actions-list-subitem-{{ $item_item_atividade["item_filho_id"] }}" class="item-actions float-right corrige-item-actions-subitem" style="display:none">
-                                                                        <span class="btn btn-sm btn-outline-success text-sm mr-0 shadow-sm conclude-item" uk-tooltip="Concluir item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-check"></i></span>
-                                                                        <span class="btn btn-sm btn-outline-warning text-sm mr-0 shadow-sm edit-item" uk-tooltip="Alterar item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-pencil-alt"></i></span>
-                                                                        <span class="btn btn-sm btn-outline-danger text-sm mr-0 shadow-sm remove-item" uk-tooltip="Remover item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-trash"></i></span>
+                                                                        <button type="button" class="btn btn-sm btn-outline-success text-sm mr-0 shadow-sm conclude-item" uk-tooltip="Concluir item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-check"></i></button>
+                                                                        <button type="button" class="btn btn-sm btn-outline-warning text-sm mr-0 shadow-sm edit-item" uk-tooltip="Alterar item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-pencil-alt"></i></button>
+                                                                        <button type="button" class="btn btn-sm btn-outline-danger text-sm mr-0 shadow-sm remove-item" uk-tooltip="Remover item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"><i class="fas fa-trash"></i></button>
                                                                         {{-- <span class=" text-sm mr-2 new-subitem"><i class="fas fa-plus text-primary" uk-tooltip="Adicionar sub-item" data-item="{{ $item_item_atividade["item_filho_id"] }}" data-atividade="{{ $item_item_atividade["atividade_id"] }}"></i></span> --}}
                                                                     </div>
                                                                 </span>
                                                             </div>
                                                         </li>
                                                     @else
-                                                        <li id="sub-item-list-{{ $item_item_atividade["item_filho_id"] }}">
+                                                        <li id="sub-item-list-{{ $item_item_atividade["item_filho_id"] }}" data-module="B">
                                                             <span id="item-card-{{ $item_item_atividade["item_filho_id"] }}" class="uk-card uk-card-primary uk-card-hover uk-card-body" style="padding: 10px">
                                                                 {{ $item_item_atividade["nome"] }}
                                                             </span>
@@ -79,7 +79,7 @@
                                         @endif
                                     </li>
                                 @else
-                                    <li id="item-list-{{ $item_atividade["id"] }}">
+                                    <li id="item-list-{{ $item_atividade["id"] }}" data-module="B">
                                         <span id="item-card-{{ $item_atividade["id"] }}" class="uk-card uk-card-primary uk-card-hover uk-card-body" style="padding: 10px">
                                             {{ $item_atividade["nome"] }}
                                         </span>
@@ -114,6 +114,27 @@
                 close: '<i class="fa fa-minus uk-text-secondary"></i>',
                 open: '<i class="fa fa-plus uk-text-secondary"></i>',
                 openerClass: 'openerCss' // css class
+            },
+            isAllowed: function(currEl, hint, target)
+            {
+                let parentModule = hint.parents('li').first().data('module');
+                let currentModule = currEl.data('module');
+
+                if(typeof parentModule !== 'undefined') {
+                    if((parentModule != currentModule) || (parentModule === 'B'))
+                    {
+                        hint.css('background-color', '#ff9999');
+                        return false;
+                    }
+                    else {
+                        hint.css('background-color', '#99ff99');
+                        return true;
+                    }
+                }
+                else {
+                    hint.css('background-color', '#99ff99');
+                    return true;
+                }
             },
             onDragStart: function(e, el)
             {
@@ -1842,15 +1863,17 @@
             let list = "<li id='item-list-"+item.id+"' data-atividade-id='"+item.atividade_id+"' data-order='"+item.ordem+"'>\n"+
                             "<div id='item-card-"+item.id+"' class='uk-card uk-card-default uk-card-hover uk-card-body' style='padding: 10px'>\n"+
                                 "<span class='uk-sortable-handle uk-margin-small-right uk-text-center' uk-icon='icon: table' id='item-handle-"+item.id+"'></span>\n"+
-                                "<span id='item-nome-"+item.id+"'>"+item.nome+"</span>\n"+
+                                "<span id='item-nome-"+item.id+"'>\n"+
+                                    item.nome+"\n"+
+                                    "<div id='actions-list-"+item.id+"' class='item-actions float-right' style='display:none'>\n"+
+                                        "<button type='button' class='btn btn-sm btn-outline-success text-sm mr-0 shadow-sm conclude-item' uk-tooltip='Concluir item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-check'></i></button>\n"+
+                                        "<button type='button' class='btn btn-sm btn-outline-warning text-sm mr-0 shadow-sm edit-item' uk-tooltip='Alterar item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-pencil-alt'></i></button>\n"+
+                                        "<button type='button' class='btn btn-sm btn-outline-danger text-sm mr-0 shadow-sm remove-item' uk-tooltip='Remover item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-trash'></i></button>\n"+
+                                        // "<span class='text-sm mr-2 new-subitem text-primary' uk-tooltip='Adicionar sub-item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-plus'></i></span>\n"+
+                                    "</div> \n"+
+                                "</span>\n"+
                             "</div>\n"+
-                        "</li>\n"+
-                        "<div id='actions-list-"+item.id+"' class='item-actions float-right' style='display:none'>\n"+
-                            "<span class='text-sm mr-2 conclude-item text-success' uk-tooltip='Concluir item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-check'></i></span>\n"+
-                            "<span class='text-sm mr-2 edit-item text-warning' uk-tooltip='Alterar item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-pencil-alt'></i></span>\n"+
-                            "<span class='text-sm mr-2 remove-item text-danger' uk-tooltip='Remover item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-trash'></i></span>\n"+
-                            "<span class='text-sm mr-2 new-subitem text-primary' uk-tooltip='Adicionar sub-item' data-item='"+item.id+"' data-atividade='"+item.atividade_id+"'><i class='fas fa-plus'></i></span>\n"+
-                        "</div>";
+                        "</li>";
 
             $("#"+local).append(list).fadeIn(200);
         }
